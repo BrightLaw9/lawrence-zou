@@ -72,36 +72,3 @@
         gap: 13px;
     }
 }
-
-@media screen and (max-width: 500px) { 
-    .navbar { 
-        flex-direction: row;
-        align-items: flex-start;
-        flex-wrap: wrap; 
-    }
-
-    .menu { 
-        display: flex; 
-        position: absolute;
-        right: 0; 
-        margin-right: 2%; 
-        flex-direction: row; 
-        flex-wrap: wrap; 
-        align-items: flex-end; 
-        gap: 11px; 
-        z-index: 3; 
-    }
-
-    .menuBtn { 
-        display: block; 
-        cursor: pointer; 
-    }
-
-    .menuItems { 
-        display: flex; 
-        flex-direction: row;
-        flex-wrap: wrap; 
-        align-items: flex-end;
-        gap: 13px;
-    }
-}
