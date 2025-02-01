@@ -1,18 +1,18 @@
 import React, {useState} from "react"; 
 
 import { getImageUrl } from "../../utils";
-import styles from "./Navbar.module.css";
+import "./Navbar.css";
 
 export function Navbar() { 
 
-    return <nav className={styles.navbar}>
-        <a className={styles.title} href="/">
+    return <nav className="navbar">
+        <a className="titleNav" href="/">
             Lawrence's Tech Home
         </a>
-        <div className={styles.menu}>
+        <div className="menu">
             {/* <img className={styles.menuBtn} src={getImageUrl("nav/menuIcon.png")}
                     alt="Menu"></img> */}
-            <ul className={styles.menuItems}>
+            <ul className="menuItems">
                 <li>
                     <a href="#about">About</a>
                 </li>

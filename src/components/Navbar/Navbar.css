@@ -20,7 +20,7 @@
     margin: 0 10%; 
 }
 
-.title { 
+.titleNav { 
     font-size: 30px; 
     font-weight: 600; 
     text-decoration: node;
@@ -70,5 +70,22 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 13px;
+    }
+}
+
+@media (max-width: 500px) { 
+    .titleNav { 
+        font-size: 24px; 
+        font-weight: 600; 
+        text-decoration: none;
+        color: var(--color-text);
+        margin-right: 10%; 
+    }
+
+    .menuItems { 
+        font-size: 20px; 
+        display: none; 
+        flex-direction: row;
+        flex-wrap: wrap; 
     }
 }
