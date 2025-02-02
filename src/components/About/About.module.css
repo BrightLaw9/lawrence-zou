@@ -2,7 +2,7 @@
 
 .container {
   position: relative;
-  background-color: rgba(12, 12, 12, 0.6);
+  background-color: rgba(243, 229, 229, 0.6);
   border-radius: 15px;
   padding: 73px;
   margin-top: 129px;
@@ -52,7 +52,7 @@
 }
 
 .descImage {
-  width: 18%;
+  width: 15%;
   margin-right: 9%;
 }
 
@@ -70,18 +70,30 @@
   border-radius: 20px;
   list-style: none;
   padding: 25px;
+  width: 100%; 
+  height: auto;
   background-image: linear-gradient(
     90deg,
-    rgba(165, 215, 232, 0.42) 0%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(131, 217, 246, 0.42) 0%,
+    rgba(209, 195, 195, 0) 100%
+  );
+  /* background-image: linear-gradient(
+    90deg,
+    rgba(125, 213, 242, 0.42) 0%,
+    rgba(255, 254, 254, 0) 100%
   );
   background-size: 0 100%;
-  background-repeat: no-repeat;
-  transition: 0.4s;
+  background-repeat: no-repeat; */
 }
 
 .aboutItem:hover {
-  background-size: 100% 100%;
+  background-image: linear-gradient(
+    90deg,
+    rgba(82, 198, 237, 0.42) 0%,
+    rgba(128, 125, 125, 0) 100%
+  );
+  transition: 0.4s;
+  transform: scale(1.05);
 }
 
 .aboutItem h3 {
@@ -95,14 +107,20 @@
 }
 
 @media screen and (max-width: 830px) {
-  .container {
-    background-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   .content {
     flex-direction: column;
+  }
+
+  .title { 
+    margin-bottom: 13px;
+  }
+
+  .aboutSectionContainer { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .aboutImage {
@@ -110,11 +128,68 @@
   }
 
   .aboutItems {
-    margin-top: 29px;
+    margin: 12px 13px;
   }
 
   .aboutItem {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 1.2rem; 
   }
+
+  .aboutItemText p { 
+    font-size: 1.2rem; 
+  }
+}
+
+@media screen and (max-width: 300px) {
+
+  .aboutItem { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    flex-shrink: 0; 
+  }
+
+  .content { 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .aboutSectionContainer { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aboutItems {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 13px;
+  }
+
+  .aboutItem {
+    padding: 10%; 
+  }
+
+  .aboutItemText p { 
+    font-size: 1.0rem; 
+  }
+
+  .aboutItemText { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .aboutItemText h3  {
+    width: 75%; 
+    font-size: 1.5rem; 
+  } */
 }

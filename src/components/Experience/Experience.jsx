@@ -13,6 +13,7 @@ export const Experience = () => {
       <ul className={styles.history}>
   {skills.map((skillGroup, index) => ( 
     <li key={index} className={styles.historyItem}>
+      <div className={styles.experienceContainer}>
       <div className={styles.skillGroup}>
         {skillGroup.map((skill, skillIndex) => ( 
           <div key={skillIndex} className={styles.skill}>
@@ -43,6 +44,7 @@ export const Experience = () => {
               </li>
             )
           }
+          </div>
     </li>
   ))}
 </ul>

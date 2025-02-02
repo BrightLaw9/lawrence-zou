@@ -6,6 +6,7 @@ import { getImageUrl } from "../../utils";
 export const About = () => {
   return (
     <section className={styles.container} id="about">
+      <div className={styles.aboutSectionContainer}>
       <h2 className={styles.title}>About</h2>
       <div className={styles.imageFadeContainer}>
           <img
@@ -51,6 +52,7 @@ export const About = () => {
             </div>
           </li>
         </ul>
+      </div>
       </div>
     </section>
   );

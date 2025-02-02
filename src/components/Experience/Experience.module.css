@@ -89,13 +89,19 @@
   gap: 40px;
 }
 
+.experienceContainer { 
+  display: flex; 
+  flex-direction: row; 
+  gap: 0.9rem; 
+}
+
 .historyItem {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 17px;
-  background: #19376d;
-  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0) 100%);
+  background: #3057a0;
+  background: linear-gradient(45deg, #5585dd 0%, rgba(91, 147, 250, 0) 100%);
   border-radius: 10px;
   padding: 24px;
   width: 100%; 
@@ -125,10 +131,10 @@
 .historyItemDetails ul {
   margin-top: 6px;
   list-style-position: inside;
-  font-size: 23px;
+  font-size: 22px;
   list-style-type: disc;
-  margin-left: 17px;
-  margin-right: 120px; 
+  margin-left: 0.7rem;
+  margin-right: 0.7rem; 
   display: flex; 
   flex-wrap: wrap; 
 }
@@ -149,5 +155,19 @@
   .history {
     width: 100%;
     gap: 9px;
+  }
+}
+
+@media only screen and (max-width: 640px) { 
+  .experienceContainer { 
+    display: flex; 
+    flex-direction: column; 
+  }
+
+  .skillGroup { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
   }
 }

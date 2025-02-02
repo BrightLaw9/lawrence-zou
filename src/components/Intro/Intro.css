@@ -182,8 +182,8 @@
 
   .button-container { 
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .profile-image-container { 
@@ -227,15 +227,5 @@
   }
   100% {
     transform: translate(0, -0px);
-  }
-}
-
-@media screen and (max-width: 830px) {
-  .container {
-    flex-direction: column-reverse;
-  }
-
-  .content {
-    align-items: center;
   }
 }
