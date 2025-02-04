@@ -107,6 +107,12 @@
   width: 100%; 
 }
 
+.historyUl { 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+}
+
 .historyImg { 
   width: 20%;
   margin-right: 10px; 

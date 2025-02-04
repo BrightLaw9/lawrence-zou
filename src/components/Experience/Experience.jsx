@@ -26,6 +26,7 @@ export const Experience = () => {
       </div>
 
       {history[index] && (
+          <ul className={styles.historyUl}>
               <li key={index} className={styles.historyItem}>
                 <img
                   className={styles.historyImg}
@@ -42,6 +43,7 @@ export const Experience = () => {
                   </ul>
                 </div>
               </li>
+            </ul>
             )
           }
           </div>

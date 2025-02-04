@@ -47,7 +47,7 @@
   text-align: center;
   font-weight: 400;
   letter-spacing: 2px;
-  margin-bottom: 8%; 
+  margin-bottom: 3rem; 
 }
 
 .links {
@@ -66,10 +66,10 @@
 }
 
 .link a {
-  color: #ae9b9b;
+  color: #ded9d9;
   text-decoration: none;
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 460;
   letter-spacing: 1.5px;
   width: 100%;
 }
@@ -79,6 +79,10 @@
     flex-direction: column;
     overflow-wrap: break-word;
     min-width: 300px;
+  }
+
+  .text p { 
+    margin-bottom: 8%;
   }
 
   .text {
