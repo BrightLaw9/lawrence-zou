@@ -10,10 +10,9 @@ export const Intro = () => {
   const traits = ['Innovator', 'Math and CS Student at UWaterloo', 'Full Stack Developer', 
       'Entrepreneur', 'Machine Learning Enthusiast'];
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const imageRef = useRef(); 
+  const profileImgUrl = getImageUrl("hero/LawrenceProfileRounded.png");
 
   useEffect(() => { 
-    imageRef.current = getImageUrl("hero/LawrenceProfileRounded.png"); 
     const interval = setInterval(() => { 
       var randIndex = Math.floor(Math.random() * traits.length); 
       if (randIndex === traits.length) randIndex--; 
@@ -52,7 +51,7 @@ export const Intro = () => {
       </div>
       <div className="profile-image-container">
         <img
-          src={imageRef.current || ""}
+          src={profileImgUrl}
           //alt="Lawrence's Profile Photo"
           className="profile-image"
         />
