@@ -4,8 +4,9 @@
     "organisation": "Globe Math",
     "startDate": "Sept 2024",
     "endDate": "Nov 2024",
-    "experiences": ["Developed custom equation and variable nodes for frontend", 
-                      "Connected FastAPI backend, used REST API for data transfer"],
+    "experiences": ["Developed custom equation and variable nodes for React frontend", 
+                      "Connected FastAPI backend, used REST API for data transfer", 
+                    "Parsed and solved a variety of equations using SymPy"],
     "imageSrc": "history/globe.png"
   },
   {
@@ -25,8 +26,8 @@
     "experiences": [
       "Built testing visualization frontend using React",
       "Built test suite & pipelines on GitLab - goal of CI/CD",
-      "Worked and ran code in Docker containers", 
-      "TCP/IP and UDP for decoding streams"
+      "Ran code in Docker containers - ensure portability and consistency in development environment", 
+      "Worked with TCP/IP and UDP when decoding streams"
     ],
     "imageSrc": "history/evertz.png"
   }, 
@@ -37,6 +38,8 @@
     "endDate": "Jun, 2024",
     "experiences": [
       "Developed modular Java code for various robot subsystems (arm, shooter, drivetrain)",
+      "Used computer vision to localize robot on the field for alignment and precision when shooting", 
+      "Programmed autonomous robot routines (ex. automatic PID controlled arm movement to a given position) allowing for 50% faster cycle times", 
       "Managed structure of code and coordinated programming team with of 15+ members"
     ],
     "imageSrc": "history/first.png"

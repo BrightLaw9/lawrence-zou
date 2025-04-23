@@ -25,12 +25,18 @@ export const ProjectCard = ({
         })}
       </ul>
       <div className={styles.links}>
-        <a href={demo} className={styles.link}>
-          Demo
-        </a>
-        <a href={source} className={styles.link}>
-          Source
-        </a>
+        {demo && 
+          <button onClick={() => {
+            window.open(demo, "_blank"); 
+          }} className={styles.link}>
+            Demo
+          </button>}
+        {source && 
+          <button onClick={() => {
+            window.open(source, "_blank"); 
+          }} className={styles.link}>
+            Source
+          </button>}
       </div>
     </div>
   );

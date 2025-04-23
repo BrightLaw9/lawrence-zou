@@ -62,4 +62,9 @@
   border-radius: 100px;
   background: #5e77b2;
   padding: 1px 22px;
+  border: none; 
+}
+
+.link:hover { 
+  cursor: pointer; 
 }

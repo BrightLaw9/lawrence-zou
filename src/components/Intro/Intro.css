@@ -79,6 +79,46 @@
   max-width: 36rem;
 }
 
+.sub-description { 
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #413d3d;
+  font-weight: 550; 
+  width: 100%; 
+  overflow-wrap: break-word; /* Ensures long words break to wrap */
+  white-space: normal; /* Default wrapping behavior */
+  clear: both; 
+  position: relative;
+  min-height: 6rem; 
+}
+
+.sub-description span {
+  position: absolute; 
+  opacity: 0; /* Default invisible */
+  clear: both; 
+  width: 100%;
+  min-height: 5rem;
+  /* transition: opacity 1s ease-in; */
+   /* Transition property, duration, and easing */
+}
+
+.sub-description span.active {
+  /* opacity: 1; Fade to visible */
+  animation: fadeIn 4s; 
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .button-container {
   display: flex;
   gap: 1rem;
@@ -113,17 +153,19 @@
 }
 
 .profile-image-container {
+  width: 100%; 
   display: flex; 
-  justify-content: center; 
+  justify-content: flex-end; 
   align-items: center;
   width: 50%;
   flex-shrink: 0; 
 }
 
 .profile-image {
-  display: flex; 
+  float: right; 
+  /* display: flex; 
   justify-content: center; 
-  align-items: center; 
+  align-items: center;  */
   width: 60%;
   margin-left: 7%; 
   margin-bottom: 7%; 
@@ -154,6 +196,19 @@
   .content { 
     padding: 1.3rem; 
   }
+  
+  .sub-description { 
+    font-size: 1.5rem;
+    text-align: left; 
+    line-height: 1.5;
+    color: #413d3d;
+    font-weight: 550; 
+    width: 100%; 
+    overflow-wrap: break-word; /* Ensures long words break to wrap */
+    white-space: normal; /* Default wrapping behavior */
+    position: relative; 
+    min-height: 4rem; 
+  }
 }
 
 @media only screen and (max-width: 500px) { 
@@ -178,6 +233,19 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+  }
+
+  .sub-description { 
+    font-size: 1.2rem;
+    text-align: left; 
+    line-height: 1.5;
+    color: #413d3d;
+    font-weight: 550; 
+    width: 100%; 
+    overflow-wrap: break-word; /* Ensures long words break to wrap */
+    white-space: normal; /* Default wrapping behavior */
+    position: relative; 
+    min-height: 4rem; 
   }
 
   .button-container { 

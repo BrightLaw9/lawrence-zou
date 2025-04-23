@@ -8,6 +8,14 @@
     "source": "https://github.com/BrightLaw9/ML_Jazz"
   },
   {
+    "title": "Raspberry Pi Spy Robot!",
+    "imageSrc": "projects/spy_robot.png",
+    "description": "Remote controlled robot with an attached camera streaming action live",
+    "skills": ["Python", "BrickPi/Raspberry Pi", "Sockets", "UDP, TCP/IP"],
+    "demo": "https://the-creative-law.medium.com/a-fun-usage-of-robotics-spy-robot-6133fc7633fc",
+    "source": "https://github.com/BrightLaw9/Pi_cam_web_streamer"
+  }, 
+  {
     "title": "TeamUp App",
     "imageSrc": "projects/task-list.png",
     "description": "Task management app for effective team collaboration",
@@ -16,11 +24,27 @@
     "source": "https://github.com/BrightLaw9/TeamUp_APP"
   },
   {
-    "title": "Raspberry Pi Spy Robot!",
-    "imageSrc": "projects/spy_robot.png",
-    "description": "Remote controlled robot with an attached camera streaming action live",
-    "skills": ["Python", "BrickPi/Raspberry Pi", "Sockets", "UDP, TCP/IP"],
-    "demo": "https://the-creative-law.medium.com/a-fun-usage-of-robotics-spy-robot-6133fc7633fc",
-    "source": "https://github.com/BrightLaw9/Pi_cam_web_streamer"
+    "title": "AltSim",
+    "imageSrc": "projects/AltSim.png",
+    "description": "Better understand and improve your current lives' situations by viewing it through a comical alternative reality.",
+    "skills": ["React", "Google Imagen", "Google Gemini", "Flask", "Base 64 Encoding", "CRUD"],
+    "demo": "",
+    "source": "https://github.com/C20H12/uofthacks"
+  },
+  {
+    "title": "GeeseTalk",
+    "imageSrc": "projects/GeeseTalk.png",
+    "description": "A resource powered by a Voice AI agent to help individuals communicate more effectively in their next interview",
+    "skills": ["React", "ElevenLabs", "Vercel", "Google Gemini", "Flask", "CSS"],
+    "demo": "https://geese-hacks2025.vercel.app/",
+    "source": "https://github.com/BrightLaw9/GeeseHacks2025/tree/main"
+  },
+  {
+    "title": "CodeSpeak",
+    "imageSrc": "projects/codespeak.png",
+    "description": "Project at GenAI Genesis Hackathon at University of Toronto. An app designed to aid those who are visually impaired in coding",
+    "skills": ["React", "Express", "Node", "Vite", "SQL", "Flask"],
+    "demo": "",
+    "source": "https://github.com/RijulChaddha9504/CodeSpeak"
   }
 ]
