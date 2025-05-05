@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 
 export const Intro = () => {
 
-  const traits = ['Innovator', 'Math and CS Student at UWaterloo', 'Full Stack Developer', 
+  const traits = ['Innovator', 'CS Student at UWaterloo', 'Full Stack Developer', 
       'Entrepreneur', 'Machine Learning Enthusiast'];
   const [selectedIndex, setSelectedIndex] = useState(0);
   const profileImgUrl = getImageUrl("hero/LawrenceProfileRounded.png");
