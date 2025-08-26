@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Machine Learning",
+        "image": "assets/about/brain-and-creative.png",
+        "description": "Interested in neural network architectures, training ML to real world applications, and learning, and scaling laws for AI growth (in terms of training data, compute, parameters)"
+    },
+    {
+        "title": "Interest in Innovative Interdisciplinary Ideas",
+        "image": "assets/about/repeat.png",
+        "description": "I believe the greatest solutions will come from bringing trivial ideas in one field into one that has yet to be exposed. This will allow for meaningful innovation.",
+        "experiences": ["One way I'm currently doing this is bringing AI technology to hardware mechanical engineers to better their productivity in design"]
+    },
+    {
+        "title": "Music and Harmonics", 
+        "image": "assets/projects/music.png",
+        "description": "A pianist, both classically and jazz trained, with a passion for spreading the spirit of good sound and creativity"
+    },
+    {
+        "title": "Sports - Running and Badminton",
+        "image": "assets/about/badminton_racket.png",
+        "description": "Sports for exercise and enjoyment",
+        "hidden": "A hobby!"
+    }
+]

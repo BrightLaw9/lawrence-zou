@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import "./page.css"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, GitPullRequest, Code, Wrench, Lightbulb, Music, Send } from "lucide-react"
+import { ArrowRight, GitPullRequest, Code, Wrench, Lightbulb, Music, Send, Trophy, BookOpen } from "lucide-react"
 
 interface CardData {
   text: string;
@@ -15,10 +15,12 @@ interface CardData {
 
 const chipData = [
   { icon: GitPullRequest, text: "Accomplishments in industry" },
-  { icon: Code, text: "Projects" },
-  { icon: Wrench, text: "Technologies I've tinkered with" },
+  { icon: Code, text: "Software Projects" },
   { icon: Lightbulb, text: "What resonates with me" },
   { icon: Music, text: "Hobbies" },
+  { icon: Wrench, text: "Hardware Projects I've tinkered with" },
+  { icon: Trophy, text: "Awards"},
+  { icon: BookOpen, text: "Education"}
 ]
 
 export default function PersonalWebsite() {
@@ -30,6 +32,8 @@ export default function PersonalWebsite() {
   const [displayedText, setDisplayedText] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(0)
+  const timeoutsRef = useRef<number[]>([])
 
   // Simple, small Markdown-like formatter:
   // - escapes HTML
@@ -122,10 +126,34 @@ export default function PersonalWebsite() {
           clearInterval(interval)
           setIsTyping(false)
         }
-      }, 50)
+      }, 30)
       return () => clearInterval(interval)
     }
   }, [responseData?.text, isTyping])
+
+  // mount cards one-by-one with 1s interval and play their animation immediately
+  useEffect(() => {
+    // clear existing timers
+    timeoutsRef.current.forEach((id) => clearTimeout(id))
+    timeoutsRef.current = []
+
+    if (showResults && responseData?.cards && responseData.cards.length > 0) {
+      setVisibleCount(0)
+      responseData.cards.forEach((_c, i) => {
+        const id = window.setTimeout(() => {
+          setVisibleCount((prev) => Math.max(prev, i + 1))
+        }, i * 1000)
+        timeoutsRef.current.push(id)
+      })
+    } else {
+      setVisibleCount(0)
+    }
+
+    return () => {
+      timeoutsRef.current.forEach((id) => clearTimeout(id))
+      timeoutsRef.current = []
+    }
+  }, [showResults, responseData?.cards])
 
   const handleSearch = async (inputValueParam: string = inputValue) => {
     if (!inputValueParam.trim()) return
@@ -157,7 +185,6 @@ export default function PersonalWebsite() {
     if (typeof data === "string") { 
       data = JSON.parse(data);
     }
-    console.log(data);
     setResponseData(data);
     setIsLoading(false);
     setIsTyping(true);
@@ -195,42 +222,63 @@ export default function PersonalWebsite() {
         </div>
       )}
 
-       {/* Right-aligned nav/link - visible in both searching and non-searching states */}
-        <div className="sm:absolute right-4 top-8 transform -translate-y-1/2 flex items-center gap-3">
-          <a
-            href="https://linkedin.com/in/lawrence-zou8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-200 hover:text-white transition"
-          >
-            LinkedIn
-          </a>
-
-          <a href="mailto:lawrencezou3s@gmail.com">
-            <Button className="px-3 py-1">Let's Connect! <Send /></Button>
-          </a>
-        </div>
-
       {/* Main Content */}
-      <div className="relative min-h-screen container flex flex-col z-10">
+      <div className="relative min-h-screen custom-container flex flex-col z-10">
+        {/* Right-aligned nav/link - visible in both searching and non-searching states */}
+        {!isSearching && 
+          <div className="sm:absolute right-4 top-8 transform -translate-y-1/2 flex items-center gap-3">
+            <a
+              href="https://linkedin.com/in/lawrence-zou8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-200 hover:text-white transition"
+            >
+              LinkedIn
+            </a>
+
+            <a href="mailto:lawrencezou3s@gmail.com">
+              <Button className="px-3 py-1">Let's Connect! <Send /></Button>
+            </a>
+          </div>
+        }
         {/* center container */}
-        <div className={`mx-auto px-4 ${!isSearching ? 'flex flex-col items-center justify-center min-h-screen pb-4' : ''}`}>
+        <div className={`${!isSearching ? 'flex flex-col items-center justify-center mx-auto px-4 min-h-screen pb-4' : 'py-2'}`}>
           {/* Header */}
           <div
-            className={`transition-all duration-700 ease-in-out ${
+            className={`transition-all duration-700 ease-in-out w-full flex justify-between ${
               isSearching
-                ? "fixed top-4 left-1/2 transform -translate-x-1/2 z-30 px-4 py-2 w-full relative"
-                : "pb-8 flex items-center justify-center w-full relative"
+                ? "sticky z-30 py-2"
+                : "pb-8 pt-8 items-center"
             }`}
           >
-            <h1
-              className={`transition-all duration-700 ease-in-out ${
-                isSearching ? "text-2xl text-left" : "text-5xl md:text-6xl text-center"
-              }`}
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Lawrence Zou
-            </h1>
+            <div className={`flex-shrink-0 ${!isSearching ? 'w-full' : '' }`}>
+              <a href="/">
+                <h1
+                  className={`transition-all duration-700 ease-in-out ${
+                    isSearching ? "text-2xl text-left" : "text-5xl md:text-6xl text-center"
+                  }`}
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  Lawrence Zou
+                </h1>
+              </a>
+            </div>
+
+            {isSearching && (
+            <div className="flex items-center gap-4 flex-shrink-0">
+              <a
+                href="https://linkedin.com/in/lawrence-zou8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-200 hover:text-white transition"
+              >
+                LinkedIn
+              </a>
+              <a href="mailto:lawrencezou3s@gmail.com">
+                <Button className="px-3 py-1">Let's Connect! <Send /></Button>
+              </a>
+            </div>
+            )}
           </div>
 
           {/* Subtitle - only show when not searching */}
@@ -246,7 +294,7 @@ export default function PersonalWebsite() {
           <div
             className={`transition-all duration-700 ease-in-out ${
               isSearching
-                ? "fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 w-full px-4"
+                ? "fixed custom-container bottom-8 left-1/2 transform -translate-x-1/2 z-50 w-full px-4"
                 : "flex flex-col items-center justify-center max-w-2xl mx-auto px-4"
             }`}
           >
@@ -317,7 +365,7 @@ export default function PersonalWebsite() {
 
         {/* Loading Animation */}
         {isLoading && (
-          <div className="fixed inset-0 flex items-center justify-center z-40">
+          <div className="inset-0 flex items-center justify-center z-40 overflow-hidden">
             <div className="bouncing-ball"></div>
           </div>
         )}
@@ -327,7 +375,7 @@ export default function PersonalWebsite() {
           // outer fixed full-width container holds the scrollbar at the viewport right;
           // horizontal overflow is visible so hovering cards can expand outside the centered content without creating a horizontal scrollbar
           <div className={`fixed top-[72px] left-0 right-0 bottom-[120px] z-20 overflow-y-auto overflow-x-visible results-scrollbar`}>
-            <div className="w-full mx-auto px-4">
+            <div className="custom-container w-full mx-auto px-4">
               {responseData.text && (
                 <div className={`mt-6 mb-4 w-full results-scroll-padding`}>
                   <div
@@ -340,72 +388,17 @@ export default function PersonalWebsite() {
 
               {responseData.cards && responseData.cards.length > 0 && (
                 <>
-                  {responseData.cardDirection === "horizontal" ? (
-                    <div className="space-y-4 w-full">
-                      {responseData.cards.map((card, index) => (
+                  <div className={`${responseData.cardDirection === "horizontal" ? "space-y-4 w-full" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full"}`}>
+                    {responseData.cards.map((card, index) => {
+                      if (index >= visibleCount) return null
+                      const animation = responseData.cardDirection === "vertical"
+                        ? (index % 3 === 2 ? 'fadeIn 1s ease-out forwards' : 'slideInFromScreenRight 1s ease-out forwards')
+                        : 'slideInFromBottom 1s ease-out forwards'
+
+                      return (
                         <Card
                           key={index}
-                          className="hover:scale-[1.02] transition-all duration-300 shadow-xl hover:shadow-2xl opacity-0"
-                          style={{
-                            background:
-                              "radial-gradient(ellipse at center, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0.02) 100%)",
-                            borderRadius: "16px",
-                            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-                            backdropFilter: "blur(4.4px)",
-                            WebkitBackdropFilter: "blur(4.4px)",
-                            border: "1px solid rgba(255, 255, 255, 0.14)",
-                            animation: `slideInFromBottom 1s ease-out ${4 + index * 1}s forwards`,
-                          }}
-                        >
-                          <CardContent className="p-6">
-                            <div className="flex gap-6 items-start">
-                              <img
-                                src={card.image || "/placeholder.svg"}
-                                alt={card.title}
-                                className="w-32 h-24 object-cover rounded shadow-md flex-shrink-0"
-                              />
-                              <div className="flex-1">
-                                <h3
-                                  className="text-xl font-semibold mb-3 text-white"
-                                  style={{
-                                    fontFamily: "var(--font-serif)",
-                                    letterSpacing: "0.05em",
-                                  }}
-                                >
-                                  {card.title}
-                                </h3>
-                                <p
-                                  className="text-gray-200 mb-4 text-sm leading-relaxed"
-                                  style={{ fontFamily: "var(--font-sans)" }}
-                                >
-                                  {card.description}
-                                </p>
-                                <a
-                                  href={card.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 text-white hover:text-gray-200 transition-colors duration-200 text-sm font-medium px-3 py-1 rounded-full"
-                                  style={{
-                                    fontFamily: "var(--font-sans)",
-                                    background: "rgba(255, 255, 255, 0.15)",
-                                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                                  }}
-                                >
-                                  {card.linkText}
-                                  <ArrowRight className="w-3 h-3" />
-                                </a>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                      {responseData.cards.map((card, index) => (
-                        <Card
-                          key={index}
-                          className="hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl h-80 opacity-0"
+                          className="animated-card hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
                           style={{
                             background:
                               "radial-gradient(circle at center, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0.02) 100%)",
@@ -414,15 +407,17 @@ export default function PersonalWebsite() {
                             backdropFilter: "blur(4.4px)",
                             WebkitBackdropFilter: "blur(4.4px)",
                             border: "1px solid rgba(255, 255, 255, 0.14)",
-                            animation: `slideInFromScreenRight 1s ease-out ${2 + index * 1}s forwards`,
+                            animation,
                           }}
                         >
                           <CardContent className="p-4">
-                            <img
-                              src={card.image || "/placeholder.svg"}
-                              alt={card.title}
-                              className="w-full h-24 object-cover rounded mb-3 shadow-md"
-                            />
+                            {card.image && 
+                              <img
+                                src={card.image}
+                                alt={card.title}
+                                className="h-32 object-contain object-center rounded mb-3 shadow-md"
+                              />
+                            }
                             <h3
                               className="text-lg font-semibold mb-2 text-white"
                               style={{
@@ -432,31 +427,66 @@ export default function PersonalWebsite() {
                             >
                               {card.title}
                             </h3>
-                            <p
-                              className="text-gray-200 mb-3 text-sm leading-relaxed"
-                              style={{ fontFamily: "var(--font-sans)" }}
-                            >
-                              {card.description}
-                            </p>
-                            <a
-                              href={card.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-white hover:text-gray-200 transition-colors duration-200 text-sm font-medium px-3 py-1 rounded-full"
-                              style={{
-                                fontFamily: "var(--font-sans)",
-                                background: "rgba(255, 255, 255, 0.15)",
-                                border: "1px solid rgba(255, 255, 255, 0.2)",
-                              }}
-                            >
-                              {card.linkText}
-                              <ArrowRight className="w-3 h-3" />
-                            </a>
+                            {card.company && 
+                              <p className="text-md text-bold text-white mb-3 leading-relaxed" style={{ fontFamily: "var(--font-sans)" }}>
+                                {card.company}
+                              </p>
+                            }
+                            {card.startDate && card.endDate && 
+                              <p className="text-gray-400 mb-3 text-sm leading-relaxed" style={{ fontFamily: "var(--font-sans)" }}>
+                                {card.startDate} - {card.endDate}
+                              </p>
+                            }
+                            {card.description && 
+                              <p
+                                className="text-gray-200 mb-3 text-sm leading-relaxed"
+                                style={{ fontFamily: "var(--font-sans)" }}
+                              >
+                                {card.description}
+                              </p>
+                            }
+                            {card.experiences && 
+                              <ul className="list-disc list-inside mb-3">
+                                {card.experiences.map((experience : string, index : number) => (
+                                  <li key={index} className="text-gray-200 text-sm leading-relaxed" style={{ fontFamily: "var(--font-sans)" }}>
+                                    {experience}
+                                  </li>
+                                ))}
+                              </ul>
+                            }
+                            <div className="flex flex-row flex-wrap gap-4">
+                            {card.link && card.linkText &&  
+                              <a
+                                href={card.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-white hover:text-gray-200 transition-colors duration-200 text-sm font-medium px-3 py-1 rounded-full"
+                                style={{
+                                  fontFamily: "var(--font-sans)",
+                                  background: "rgba(255, 255, 255, 0.15)",
+                                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                                }}
+                              >
+                                {card.linkText}
+                                <ArrowRight className="w-3 h-3" />
+                              </a>
+                              }
+                              {card.skills && card.skills.map((skill: string) => (
+                                <div key={skill} className="inline-flex items-center gap-2 text-white hover:text-gray-200 transition-colors duration-200 text-sm font-medium px-3 py-1 rounded-full"
+                                  style={{
+                                    fontFamily: "var(--font-sans)",
+                                    background: "rgba(255, 255, 255, 0.40)",
+                                    border: "1px solid rgba(255, 255, 255, 0.5)",
+                                  }}>
+                                  {skill}
+                                </div>
+                              ))}
+                            </div>
                           </CardContent>
                         </Card>
-                      ))}
-                    </div>
-                  )}
+                      )
+                    })}
+                  </div>
                 </>
               )}
             </div>

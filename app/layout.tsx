@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import "./font.css"
 import "./index.css"
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: "Lawrence Zou - Personal Website",
@@ -16,8 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-  <head />
-      <body>{children}</body>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

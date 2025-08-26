@@ -10,7 +10,7 @@ I'm someone who appreciates how technology can elevate our experiences. Evolving
 I strive to innovate from fundamental ideas first. Once strong goals are established, I will look to find effective solutions that brings results quickly, allowing for a faster rate of testing and iteration. 
 
 Technical Skills: 
-💻 Languages and Libraries: Python, Java, C++, React, React Redux, Flask, C#, HTML, CSS, JavaScript, TypeScript, PHP
+💻 Languages and Libraries: Python, JavaScript, C++, React, React Redux, Flask, C#, HTML, CSS, TypeScript, PHP, Java
 🌐 Cloud Hosting and Computing: Vercel, Google Cloud
 🔧 Protocols: HTTP, REST APIs, TCP/IP, UDP
 💾 Databases: MongoDB, Firebase, SQL (MySQL, SQLite)

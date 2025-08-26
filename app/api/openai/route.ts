@@ -19,14 +19,7 @@ const tools = [
         type: "function",
         function: { 
             name: "readIndustryExperience",
-            description: "Reads the industry experiences that Lawrence has",
-        }
-    },
-    {
-        type: "function",
-        function: { 
-            name: "readHobbies",
-            description: "Reads the hobbies that Lawrence has",
+            description: "Reads the industry experiences that Lawrence has. Note that in these experiences may have some skills listed."
         }
     },
     {
@@ -40,21 +33,21 @@ const tools = [
         type: "function",
         function: { 
             name: "readOverallExperience",
-            description: "Reads the overall experience that Lawrence has",
+            description: "Reads the overall experience, including education, awards, and notable achievements.",
         }
     },
     {
         type: "function",
         function: { 
             name: "readInterests",
-            description: "Reads the interests and what resonates with Lawrence. Gets his values.",
+            description: "Reads the interests and what resonates with Lawrence. Gets his values and hobbies.",
         }
     },
     {
         type: "function",
         function: {
             name: "readStartupExperience",
-            description: "Reads the startup experience that Lawrence has",
+            description: "Reads the startups that Lawrence is working on. Including hardware startup and high student job startup",
         }
     }
 ]
@@ -64,18 +57,13 @@ async function readIndustryExperience() {
     return await readFileSafe(industryExperiencePath);
 }
 
-async function readHobbies() {
-    const hobbiesPath = path.resolve("app/api/openai/data/hobbies.json");
-    return await readFileSafe(hobbiesPath);
-}
-
 async function readProjects() {
     const projectsPath = path.resolve("app/api/openai/data/projects.json");
     return await readFileSafe(projectsPath);
 }
 
 async function readOverallExperience() {
-    const overallExperiencePath = path.resolve("app/api/openai/data/overall_experience.json");
+    const overallExperiencePath = path.resolve("app/api/openai/data/overall.json");
     return await readFileSafe(overallExperiencePath);
 }
 
@@ -85,7 +73,7 @@ async function readInterests() {
 }
 
 async function readStartupExperience() {
-    const startupExperiencePath = path.resolve("app/api/openai/data/startup_experience.json");
+    const startupExperiencePath = path.resolve("app/api/openai/data/startups.json");
     return await readFileSafe(startupExperiencePath);
 }
 
@@ -108,65 +96,52 @@ export async function POST(req: Request) {
   });
 
   const choice = completion.choices[0].message;
-  console.log("First completion message", choice);
+  // console.log("First completion message", choice);
 
   const tool_calls_res = [];
 
   // Check if the model requested a tool call
   if (choice.tool_calls?.length) {
-    const toolCall = choice.tool_calls[0];
-    const fn = toolCall.function;
-    var result = "";
-    if (fn.name === "readIndustryExperience") {
-      console.log("Calling industry");
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool",
-        tool_call_id: toolCall.id,
-        content:  await readIndustryExperience() ?? ""
-      });
+    for (const toolCall of choice.tool_calls) {
+      const fn = toolCall.function;
+      // console.log("Tool call requested:", fn.name, fn.arguments);
+      if (fn.name === "readIndustryExperience") {
+        tool_calls_res.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content:  await readIndustryExperience() ?? ""
+        });
+      }
+      else if (fn.name === "readProjects") {
+        tool_calls_res.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content:  await readProjects() ?? ""
+        });
+      }
+      else if (fn.name === "readOverallExperience") {
+        tool_calls_res.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content:  await readOverallExperience() ?? ""
+        });
+      }
+      else if (fn.name === "readInterests") {
+        tool_calls_res.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content:  await readInterests() ?? ""
+        });
+      }
+      else if (fn.name === "readStartupExperience") {
+        tool_calls_res.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content:  await readStartupExperience() ?? ""
+        });
+      }
     }
-    else if (fn.name === "readHobbies") {
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool", 
-        tool_call_id: toolCall.id,
-        content:  await readHobbies() ?? ""
-      });
-    }
-    else if (fn.name === "readProjects") {
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool",
-        tool_call_id: toolCall.id,
-        content:  await readProjects() ?? ""
-      });
-    }
-    else if (fn.name === "readOverallExperience") {
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool",
-        tool_call_id: toolCall.id,
-        content:  await readOverallExperience() ?? ""
-      });
-    }
-    else if (fn.name === "readInterests") {
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool",
-        tool_call_id: toolCall.id,
-        content:  await readInterests() ?? ""
-      });
-    }
-    else if (fn.name === "readStartupExperience") {
-      const args = JSON.parse(toolCall.function.arguments);
-      tool_calls_res.push({
-        role: "tool",
-        tool_call_id: toolCall.id,
-        content:  await readStartupExperience() ?? ""
-      });
-    }
-    console.log("Following up");
+    // console.log("Following up");
     // Optionally send the result back to the model for further reasoning
     const followUp = await openai.chat.completions.create({
     model: "gpt-4.1",

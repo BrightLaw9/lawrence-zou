@@ -1,24 +1,51 @@
-[{
-    "title": "Leading Innovation at Tech Corp",
-    "image": "/modern-office-building.png",
-    "description":
-      "Spearheaded the development of cutting-edge solutions that transformed how teams collaborate, resulting in 40% increased productivity across the organization.",
-    "link": "https://google.com",
-    "linkText": "Learn More"
+[
+  {
+    "role": "Full Stack Software & AI Developer",
+    "company": "Idea Notion Development Inc.",
+    "startDate": "May 2025", 
+    "endDate": "August 2025",
+    "experiences": [
+      "Worked with WordPress and PHP to develop the website for Food Banks Canada.",
+      "Improved the efficiency on various components on the site with optimized database calls and simplified calculations.",
+      "Worked on the DealerAI product, which helps car dealerships with various forms of automation.",
+      "Worked on DealerAI consumer facing chatbot, and campaign handling and scheduling."
+    ],
+    "image": "assets/history/idea_notion_development_inc_logo.png"
+  },
+    {
+    "role": "Full Stack Developer",
+    "company": "Globe Math",
+    "startDate": "Sept 2024",
+    "endDate": "Nov 2024",
+    "experiences": ["Developed custom equation and variable nodes for React frontend", 
+                      "Connected FastAPI backend, used REST API for data transfer", 
+                    "Parsed and solved a variety of equations using SymPy"],
+    "image": "assets/history/globe.png"
   },
   {
-    "title": "Open Source Contributions",
-    "image": "/code-on-screen.png",
-    "description":
-      "Built and maintained several popular open-source libraries used by thousands of developers worldwide, focusing on developer experience and performance.",
-    "link": "https://google.com",
-    "linkText": "Learn More"
-  },
+    "role": "Student Software Intern",
+    "company": "Evertz",
+    "startDate": "July 2023",
+    "endDate": "December 2023",
+    "experiences": [
+      "Built testing visualization frontend using React",
+      "Built test suite & pipelines on GitLab - goal of CI/CD",
+      "Ran code in Docker containers - ensure portability and consistency in development environment", 
+      "Worked with TCP/IP and UDP when decoding streams"
+    ],
+    "image": "assets/history/evertz.png"
+  }, 
   {
-    "title": "Mentoring the Next Generation",
-    "image": "/collaborative-teamwork.png",
-    "description":
-      "Passionate about sharing knowledge and helping junior developers grow their skills through workshops, code reviews, and one-on-one mentoring sessions.",
-    "link": "https://google.com",
-    "linkText": "Learn More"
-  }]
+    "role": "Programming Lead",
+    "company": "FIRST Robotics",
+    "startDate": "Sept 2021",
+    "endDate": "Jun 2024",
+    "experiences": [
+      "Developed modular Java code for various robot subsystems (arm, shooter, drivetrain)",
+      "Used computer vision to localize robot on the field for alignment and precision when shooting", 
+      "Programmed autonomous robot routines (ex. automatic PID controlled arm movement to a given position) allowing for 50% faster cycle times", 
+      "Managed structure of code and coordinated programming team with of 15+ members"
+    ],
+    "image": "assets/history/first.png"
+  }
+]

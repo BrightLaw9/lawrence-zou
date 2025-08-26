@@ -132,9 +132,15 @@
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes slideInFromScreenRight {
   0% {
-    transform: translateX(100%);
+    /* start slightly off-screen using viewport units to avoid creating layout overflow */
+    transform: translateX(20vw);
     opacity: 0;
   }
   100% {
@@ -155,7 +161,9 @@
   animation: bouncingBall 6s infinite;
   bottom: 20vh;
   left: 50%;
+  transform: translateX(-50%) translateY(0);
   transform-origin: center bottom;
+  pointer-events: none;
 }
 
 .bouncing-ball::before {
@@ -172,89 +180,94 @@
 
 @keyframes bouncingBall {
   0% {
-    transform: translateX(-40vw) translateY(0) scaleX(1) scaleY(1);
+    transform: translateX(calc(-50% - 30vw)) translateY(0) scaleX(1) scaleY(1);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   5% {
-    transform: translateX(-30vw) translateY(-40vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 25vw)) translateY(-35vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   10% {
-    transform: translateX(-20vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% - 20vw)) translateY(0) scaleX(1.1) scaleY(0.9);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   15% {
-    transform: translateX(-10vw) translateY(-35vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 15vw)) translateY(-30vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   20% {
-    transform: translateX(0) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% - 10vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   25% {
-    transform: translateX(10vw) translateY(-30vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 5vw)) translateY(-25vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   30% {
-    transform: translateX(20vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% + 0vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   35% {
-    transform: translateX(30vw) translateY(-25vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% + 5vw)) translateY(-20vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   40% {
-    transform: translateX(40vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% + 10vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   45% {
-    transform: translateX(55vw) translateY(-20vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% + 15vw)) translateY(-18vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   50% {
-    transform: translateX(50vw) translateY(0) scaleX(1) scaleY(1);
+    transform: translateX(calc(-50% + 20vw)) translateY(0) scaleX(1) scaleY(1);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   55% {
-    transform: translateX(40vw) translateY(-20vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% + 15vw)) translateY(-18vh) scaleX(0.95) scaleY(1.05);
   animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   60% {
-    transform: translateX(30vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% + 10vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   65% {
-    transform: translateX(20vw) translateY(-25vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% + 5vw)) translateY(-20vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   70% {
-    transform: translateX(10vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% + 0vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   75% {
-    transform: translateX(0vw) translateY(-30vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 5vw)) translateY(-25vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   80% {
-    transform: translateX(-10vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% - 10vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   85% {
-    transform: translateX(-20vw) translateY(-35vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 15vw)) translateY(-30vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   90% {
-    transform: translateX(-30vw) translateY(0) scaleX(1.1) scaleY(0.9);
+    transform: translateX(calc(-50% - 20vw)) translateY(0) scaleX(1.05) scaleY(0.95);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   95% {
-    transform: translateX(-40vw) translateY(-40vh) scaleX(0.95) scaleY(1.05);
+    transform: translateX(calc(-50% - 25vw)) translateY(-35vh) scaleX(0.95) scaleY(1.05);
     animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   }
   100% {
-    transform: translateX(-55vw) translateY(0) scaleX(1) scaleY(1);
+    transform: translateX(calc(-50% - 30vw)) translateY(0) scaleX(1) scaleY(1);
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+}
+
+/* prevent horizontal scrollbars from transforms/animations while keeping vertical scrolling behavior */
+html, body {
+  overflow-x: hidden;
 }
 
 /* custom scrollbar for results container: transparent track, white thumb */
@@ -287,4 +300,53 @@
 /* ensure the centered inner wrapper doesn't clip hover-expanded cards */
 .results-scrollbar > .w-full {
   overflow-x: visible;
+}
+
+/* make animated cards not trigger layout reflow and hint the browser for smoother transforms */
+/* target elements that use the slideInFromScreenRight animation */
+.animated-card {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-origin: center;
+}
+
+/* Custom container matching the breakpoint widths from the provided reference.
+   - Full width by default with horizontal padding
+   - Centers content via auto margins
+   - Max widths applied at breakpoint min-widths to mimic a Bootstrap-like container
+*/
+.custom-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* matches common container padding */
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Extra small: <576px -> 100% (no max-width needed) */
+
+/* Small >=576px */
+@media (min-width: 576px) {
+  .custom-container { max-width: 540px; }
+}
+
+/* Medium >=768px */
+@media (min-width: 768px) {
+  .custom-container { max-width: 720px; }
+}
+
+/* Large >=992px */
+@media (min-width: 992px) {
+  .custom-container { max-width: 960px; }
+}
+
+/* X-Large >=1200px */
+@media (min-width: 1200px) {
+  .custom-container { max-width: 1140px; }
+}
+
+/* XX-Large >=1400px */
+@media (min-width: 1400px) {
+  .custom-container { max-width: 1320px; }
 }

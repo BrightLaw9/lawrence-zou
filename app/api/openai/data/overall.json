@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Lawrence Zou",
+        "description": "I am an innovative, fast-moving, and thoughtful software and AI engineer who aims to build solutions that will uplift people and processes.",
+        "image": "assets/hero/LawrenceProfileRounded.png"
+    },
+    {
+        "title": "Education",
+        "description": "I'm pursuing a Bachelor's in Computer Science from the University of Waterloo",
+        "image": "assets/hero/uwaterloo.png",
+        "experiences": [
+            "Functional Programming",
+            "Data Structures and Algorithm Design",
+            "Object Oriented Programming (Advanced offering)",
+            "Compilers, parsers, assembly language",
+            "Logic"
+        ]
+    },
+    {
+        "title": "Awards and Achievements",
+        "experiences": [
+            "Received the FIRST Robotics Dean's Semi-Finalist Award in the competition season we were provincial finalists",
+            "Student of Excellence",
+            "Conn Selmer Canadian National Jazz Band Pianist"
+        ]
+    }
+]
