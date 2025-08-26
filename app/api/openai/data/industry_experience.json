@@ -1,0 +1,24 @@
+[{
+    "title": "Leading Innovation at Tech Corp",
+    "image": "/modern-office-building.png",
+    "description":
+      "Spearheaded the development of cutting-edge solutions that transformed how teams collaborate, resulting in 40% increased productivity across the organization.",
+    "link": "https://google.com",
+    "linkText": "Learn More"
+  },
+  {
+    "title": "Open Source Contributions",
+    "image": "/code-on-screen.png",
+    "description":
+      "Built and maintained several popular open-source libraries used by thousands of developers worldwide, focusing on developer experience and performance.",
+    "link": "https://google.com",
+    "linkText": "Learn More"
+  },
+  {
+    "title": "Mentoring the Next Generation",
+    "image": "/collaborative-teamwork.png",
+    "description":
+      "Passionate about sharing knowledge and helping junior developers grow their skills through workshops, code reviews, and one-on-one mentoring sessions.",
+    "link": "https://google.com",
+    "linkText": "Learn More"
+  }]
