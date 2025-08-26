@@ -226,7 +226,7 @@ export default function PersonalWebsite() {
       <div className="relative min-h-screen custom-container flex flex-col z-10">
         {/* Right-aligned nav/link - visible in both searching and non-searching states */}
         {!isSearching && 
-          <div className="sm:absolute right-4 top-8 transform -translate-y-1/2 flex items-center gap-3">
+          <div className="absolute right-4 top-12 transform -translate-y-1/2 flex items-center gap-3">
             <a
               href="https://linkedin.com/in/lawrence-zou8"
               target="_blank"
@@ -391,9 +391,12 @@ export default function PersonalWebsite() {
                   <div className={`${responseData.cardDirection === "horizontal" ? "space-y-4 w-full" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full"}`}>
                     {responseData.cards.map((card, index) => {
                       if (index >= visibleCount) return null
-                      const animation = responseData.cardDirection === "vertical"
-                        ? (index % 3 === 2 ? 'fadeIn 1s ease-out forwards' : 'slideInFromScreenRight 1s ease-out forwards')
-                        : 'slideInFromBottom 1s ease-out forwards'
+                        const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+                        const animation = isMobile
+                        ? 'fadeIn 1s ease-out forwards'
+                        : responseData.cardDirection === "vertical"
+                          ? (index % 3 === 2 ? 'fadeIn 1s ease-out forwards' : 'slideInFromScreenRight 1s ease-out forwards')
+                          : 'slideInFromBottom 1s ease-out forwards'
 
                       return (
                         <Card
