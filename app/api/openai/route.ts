@@ -96,7 +96,7 @@ export async function POST(req: Request) {
   });
 
   const choice = completion.choices[0].message;
-  // console.log("First completion message", choice);
+  console.log("First completion message", choice);
 
   const tool_calls_res = [];
 

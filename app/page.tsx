@@ -23,6 +23,8 @@ const chipData = [
   { icon: BookOpen, text: "Education"}
 ]
 
+const SITE_URL = "https://lawrence-zou.vercel.app"
+
 export default function PersonalWebsite() {
   const [isSearching, setIsSearching] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -225,8 +227,19 @@ export default function PersonalWebsite() {
       {/* Main Content */}
       <div className="relative min-h-screen custom-container flex flex-col z-10">
         {/* Right-aligned nav/link - visible in both searching and non-searching states */}
-        {!isSearching && 
-          <div className="absolute right-4 top-12 transform -translate-y-1/2 flex items-center gap-3">
+        {!isSearching &&
+          <div className="absolute right-4 top-12 transform -translate-y-1/2 flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 mr-4 flex-shrink-0">
+                <a href={`https://cs.uwatering.com/#${SITE_URL}?nav=prev`}>←</a>
+                <a href={`https://cs.uwatering.com/#${SITE_URL}`} target='_blank'>
+                    <img
+                      src='https://cs.uwatering.com/icon.white.svg'
+                      alt='CS Webring'
+                      className="w-6 h-auto flex-shrink-0 opacity-80"
+                    />
+                </a>
+                <a href={`https://cs.uwatering.com/#${SITE_URL}?nav=next`}>→</a>
+            </div>
             <a
               href="https://linkedin.com/in/lawrence-zou8"
               target="_blank"
@@ -237,7 +250,7 @@ export default function PersonalWebsite() {
             </a>
 
             <a href="mailto:lawrencezou3s@gmail.com">
-              <Button className="px-3 py-1">Let's Connect! <Send /></Button>
+                <Button className="px-3 py-1">Let's Connect! <Send /></Button>
             </a>
           </div>
         }
@@ -265,7 +278,18 @@ export default function PersonalWebsite() {
             </div>
 
             {isSearching && (
-            <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="flex justify-end items-center gap-4 flex-shrink-1 flex-wrap pb-4 px-4">
+              <div className="flex items-center gap-2 mr-4 flex-shrink-0">
+                <a href={`https://cs.uwatering.com/#${SITE_URL}?nav=prev`}>←</a>
+                <a href={`https://cs.uwatering.com/#${SITE_URL}`} target='_blank'>
+                    <img
+                      src='https://cs.uwatering.com/icon.white.svg'
+                      alt='CS Webring'
+                      className="w-6 h-auto flex-shrink-0 opacity-80"
+                    />
+                </a>
+                <a href={`https://cs.uwatering.com/#${SITE_URL}?nav=next`}>→</a>
+              </div>
               <a
                 href="https://linkedin.com/in/lawrence-zou8"
                 target="_blank"
@@ -283,8 +307,8 @@ export default function PersonalWebsite() {
 
           {/* Subtitle - only show when not searching */}
           {!isSearching && (
-            <div className="text-center mb-12">
-              <p className="text-xl md:text-2xl text-gray-300 mb-8" style={{ fontFamily: "var(--font-sans)" }}>
+            <div className="text-center mb-4">
+              <p className="text-xl md:text-2xl text-gray-300 mb-4" style={{ fontFamily: "var(--font-sans)" }}>
                 Welcome! What would you like to learn about me?
               </p>
             </div>
@@ -374,7 +398,7 @@ export default function PersonalWebsite() {
         {showResults && !isLoading && responseData && (
           // outer fixed full-width container holds the scrollbar at the viewport right;
           // horizontal overflow is visible so hovering cards can expand outside the centered content without creating a horizontal scrollbar
-          <div className={`fixed top-[72px] left-0 right-0 bottom-[120px] z-20 overflow-y-auto overflow-x-visible results-scrollbar`}>
+          <div className={`fixed top-[84px] left-0 right-0 bottom-[120px] z-20 overflow-y-auto overflow-x-visible results-scrollbar`}>
             <div className="custom-container w-full mx-auto px-4">
               {responseData.text && (
                 <div className={`mt-6 mb-4 w-full results-scroll-padding`}>
